@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"79c09c8b3d6345a68bf4a712f145684d","collectionName":"geo_sparqlendpoints","type":"collection"}
