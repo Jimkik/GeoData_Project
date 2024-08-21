@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_b5152048ec76e6c04c1a0c6d3263a447 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_b5152048ec76e6c04c1a0c6d3263a447" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_b5152048ec76e6c04c1a0c6d3263a447 = L.map(
+                "map_b5152048ec76e6c04c1a0c6d3263a447",
+                {
+                    center: [0.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 2,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_3a395c75b91c7d2e954e0579ece6c79f = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_3a395c75b91c7d2e954e0579ece6c79f.addTo(map_b5152048ec76e6c04c1a0c6d3263a447);
+        
+    
+            var feature_group_9ae99dc5f048b8adf100285dc533f16e = L.featureGroup(
+                {}
+            );
+        
+    
+            var marker_bc110b53de031b5331866bc1dc0c6c15 = L.marker(
+                [50.464168548584, -4.6222224235535],
+                {}
+            ).addTo(feature_group_9ae99dc5f048b8adf100285dc533f16e);
+        
+    
+            var icon_a0f185ffd40d0c54354a74aeb722136d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_bc110b53de031b5331866bc1dc0c6c15.setIcon(icon_a0f185ffd40d0c54354a74aeb722136d);
+        
+    
+        var popup_ed27448a50372d30b4d36547e3b78a23 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6a5b70cdf148a0f3fbe38bfffa1ede72 = $(`<div id="html_6a5b70cdf148a0f3fbe38bfffa1ede72" style="width: 100.0%; height: 100.0%;">Cabilla and Redrice Woods</div>`)[0];
+                popup_ed27448a50372d30b4d36547e3b78a23.setContent(html_6a5b70cdf148a0f3fbe38bfffa1ede72);
+            
+        
+
+        marker_bc110b53de031b5331866bc1dc0c6c15.bindPopup(popup_ed27448a50372d30b4d36547e3b78a23)
+        ;
+
+        
+    
+    
+            var marker_4a1b407b5f617a00d5070d40bd2f6b2e = L.marker(
+                [45.489444732666, -73.583610534668],
+                {}
+            ).addTo(feature_group_9ae99dc5f048b8adf100285dc533f16e);
+        
+    
+            var icon_b079b43fd0cba0e08f9cb2aa8cc34632 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_4a1b407b5f617a00d5070d40bd2f6b2e.setIcon(icon_b079b43fd0cba0e08f9cb2aa8cc34632);
+        
+    
+        var popup_80fd8e8f0b406185110bd68e50ad574c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_db4d056dfd05587c377b0a3458d63d95 = $(`<div id="html_db4d056dfd05587c377b0a3458d63d95" style="width: 100.0%; height: 100.0%;">Cabot Square, Montreal</div>`)[0];
+                popup_80fd8e8f0b406185110bd68e50ad574c.setContent(html_db4d056dfd05587c377b0a3458d63d95);
+            
+        
+
+        marker_4a1b407b5f617a00d5070d40bd2f6b2e.bindPopup(popup_80fd8e8f0b406185110bd68e50ad574c)
+        ;
+
+        
+    
+    
+            var marker_b523d75ae9184e7f33be907e5a95faac = L.marker(
+                [46.94393157959, -60.466773986816],
+                {}
+            ).addTo(feature_group_9ae99dc5f048b8adf100285dc533f16e);
+        
+    
+            var icon_47a292266bb79025c361796f788dce46 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_b523d75ae9184e7f33be907e5a95faac.setIcon(icon_47a292266bb79025c361796f788dce46);
+        
+    
+        var popup_aa52e6fa28824054cbd818c2088cc664 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e7f0bfd3314b3110e44cb2e8998a349c = $(`<div id="html_e7f0bfd3314b3110e44cb2e8998a349c" style="width: 100.0%; height: 100.0%;">Cabots Landing Provincial Park</div>`)[0];
+                popup_aa52e6fa28824054cbd818c2088cc664.setContent(html_e7f0bfd3314b3110e44cb2e8998a349c);
+            
+        
+
+        marker_b523d75ae9184e7f33be907e5a95faac.bindPopup(popup_aa52e6fa28824054cbd818c2088cc664)
+        ;
+
+        
+    
+    
+            var marker_5dc16a3c7f42f60d7977c0186e7dbbbd = L.marker(
+                [40.698120117188, -73.990432739258],
+                {}
+            ).addTo(feature_group_9ae99dc5f048b8adf100285dc533f16e);
+        
+    
+            var icon_27cb03753695ee375491e7e3978bbde5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_5dc16a3c7f42f60d7977c0186e7dbbbd.setIcon(icon_27cb03753695ee375491e7e3978bbde5);
+        
+    
+        var popup_ca8a14cf23f5e7d424f60f88302de6c4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_63299aa7ad29469fe530a34f163f6db6 = $(`<div id="html_63299aa7ad29469fe530a34f163f6db6" style="width: 100.0%; height: 100.0%;">Cadman Plaza</div>`)[0];
+                popup_ca8a14cf23f5e7d424f60f88302de6c4.setContent(html_63299aa7ad29469fe530a34f163f6db6);
+            
+        
+
+        marker_5dc16a3c7f42f60d7977c0186e7dbbbd.bindPopup(popup_ca8a14cf23f5e7d424f60f88302de6c4)
+        ;
+
+        
+    
+    
+            var marker_577c19c5567006f25da55d0bb7783745 = L.marker(
+                [39.491664886475, -84.039169311523],
+                {}
+            ).addTo(feature_group_9ae99dc5f048b8adf100285dc533f16e);
+        
+    
+            var icon_720261d33ad89b6fa4d04e3141c80eec = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_577c19c5567006f25da55d0bb7783745.setIcon(icon_720261d33ad89b6fa4d04e3141c80eec);
+        
+    
+        var popup_272e7160d433b98d5184a92993214e70 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3851f784600296545940a9010282d5fe = $(`<div id="html_3851f784600296545940a9010282d5fe" style="width: 100.0%; height: 100.0%;">Caesar Creek State Park</div>`)[0];
+                popup_272e7160d433b98d5184a92993214e70.setContent(html_3851f784600296545940a9010282d5fe);
+            
+        
+
+        marker_577c19c5567006f25da55d0bb7783745.bindPopup(popup_272e7160d433b98d5184a92993214e70)
+        ;
+
+        
+    
+    
+            feature_group_9ae99dc5f048b8adf100285dc533f16e.addTo(map_b5152048ec76e6c04c1a0c6d3263a447);
+        
+    
+            var feature_group_80234a840d89bfd21df557160ad37831 = L.featureGroup(
+                {}
+            );
+        
+    
+            feature_group_80234a840d89bfd21df557160ad37831.addTo(map_b5152048ec76e6c04c1a0c6d3263a447);
+        
+    
+            var feature_group_75a1b8cfe83a7e796d8e8b4ed67992c5 = L.featureGroup(
+                {}
+            );
+        
+    
+            feature_group_75a1b8cfe83a7e796d8e8b4ed67992c5.addTo(map_b5152048ec76e6c04c1a0c6d3263a447);
+        
+    
+            var layer_control_84464b1402d59081661c34cc19cadfe7_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_3a395c75b91c7d2e954e0579ece6c79f,
+                },
+                overlays :  {
+                    "Points" : feature_group_9ae99dc5f048b8adf100285dc533f16e,
+                    "Lines" : feature_group_80234a840d89bfd21df557160ad37831,
+                    "Polygons" : feature_group_75a1b8cfe83a7e796d8e8b4ed67992c5,
+                },
+            };
+            let layer_control_84464b1402d59081661c34cc19cadfe7 = L.control.layers(
+                layer_control_84464b1402d59081661c34cc19cadfe7_layers.base_layers,
+                layer_control_84464b1402d59081661c34cc19cadfe7_layers.overlays,
+                {"autoZIndex": true, "collapsed": true, "position": "topright"}
+            ).addTo(map_b5152048ec76e6c04c1a0c6d3263a447);
+
+        
+</script>
+</html>

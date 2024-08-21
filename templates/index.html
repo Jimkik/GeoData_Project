@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - GeoData Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">GeoData Application</h1>
+
+    <!-- Display Flash Messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-warning">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <div class="row">
+        <!-- Login Form -->
+        <div class="col-md-6">
+            <h2>Login</h2>
+            <form action="{{ url_for('login') }}" method="POST">
+                <div class="form-group">
+                    <label for="userID">User ID or Email:</label>
+                    <input type="text" class="form-control" id="userID" name="userID" required>
+                </div>
+                <button type="submit" class="btn btn-success btn-block">Login</button>
+            </form>
+        </div>
+        
+        <!-- Register Form -->
+        <div class="col-md-6">
+            <h2>Register</h2>
+            <form action="{{ url_for('register') }}" method="POST">
+                <div class="form-group">
+                    <label for="register_userID">User ID:</label>
+                    <input type="text" class="form-control" id="register_userID" name="userID" required>
+                </div>
+                <div class="form-group">
+                    <label for="register_userName">User Name:</label>
+                    <input type="text" class="form-control" id="register_userName" name="userName" required>
+                </div>
+                <div class="form-group">
+                    <label for="register_email">Email:</label>
+                    <input type="email" class="form-control" id="register_email" name="email" required>
+                </div>
+                <button type="submit" class="btn btn-success btn-block">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SPARQL Query Form -->
+    <div class="mt-5">
+        <h2>Run a SPARQL Query</h2>
+        <form action="{{ url_for('index') }}" method="POST">
+            <div class="form-group">
+                <textarea class="form-control" name="query" id="query" rows="5" placeholder="Enter your SPARQL query here..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Run Query</button>
+        </form>
+    </div>
+</div>
+
+<!-- Include Bootstrap JS and dependencies (optional) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

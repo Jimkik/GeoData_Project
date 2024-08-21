@@ -1,0 +1,7 @@
+<h1>Users</h1>
+<a href="{{ url_for('add_user') }}">Add User</a>
+<ul>
+    {% for user in users %}
+    <li>{{ user.userName }} ({{ user.email }}) - <a href="{{ url_for('edit_user', userID=user.userID) }}">Edit</a> | <form method="POST" action="{{ url_for('delete_user', userID=user.userID) }}" style="display:inline;"><button type="submit">Delete</button></form></li>
+    {% endfor %}
+</ul>
