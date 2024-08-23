@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 from sparql_to_mongo import run_user_sparql_query, fetch_features_from_mongo, create_layered_map
 import os
 from pymongo import MongoClient
+import folium
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)  #to display messages
@@ -19,41 +20,24 @@ users_collection = db[USER_COLLECTION_NAME]
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    """Render the homepage with the query form."""
     if request.method == 'POST':
         sparql_query = request.form['query']
         if sparql_query.strip():
             run_user_sparql_query(sparql_query, MONGO_URI, DATABASE_NAME)
-            return redirect(url_for('map_results'))  # Redirect to map results page after query
+            return redirect(url_for('index'))  # Redirect to homepage to refresh the map
         else:
             flash("Please enter a valid SPARQL query.")
             return redirect(url_for('index'))
-    return render_template('index.html')
 
-@app.route('/map_results')
-def map_results():
-    """Render the map results page."""
-    features = fetch_features_from_mongo(MONGO_URI, DATABASE_NAME, COLLECTION_NAME)
-    if features:
-        map_html = create_layered_map(features)
-        return render_template('map_results.html', folium_map=map_html._repr_html_())
-    else:
-        flash("No features to display on the map.")
-    return redirect(url_for('index'))
+    features = fetch_features_from_mongo(MONGO_URI, DATABASE_NAME, COLLECTION_NAME) if 'userID' in session else []
+    map_html = create_layered_map(features) if features else create_layered_map([])  # Create an empty map if no features
+    return render_template('index.html', folium_map=map_html._repr_html_())
 
-@app.route('/manage-layers')
-def manage_layers():
-    # will add code here
-    pass
 
-@app.route('/add-feature', methods=['GET', 'POST'])
-def add_feature():
-    # will add code here
-    pass
+
 
 @app.route('/login', methods=['POST'])
 def login():
-    """Handle user login."""
     if request.method == 'POST':
         user_identifier = request.form['userID'] or request.form['email']
         
@@ -64,16 +48,46 @@ def login():
             session['userID'] = user['userID']
             session['userName'] = user['userName']
             session['role'] = user['role']
-            flash('Login successful!')
+            flash('Login successful!', 'success')
             return redirect(url_for('index'))
         else:
-            flash('Login failed. Check your ID or email.')
+            flash('Login failed. User not found. Please register if you are a new user.', 'danger')
     
     return redirect(url_for('index'))
 
+
+
+
+@app.route('/map_results')
+def map_results():
+    features = fetch_features_from_mongo(MONGO_URI, DATABASE_NAME, COLLECTION_NAME)
+    
+    if features:
+        map_html = create_layered_map(features)
+        return render_template('map_results.html', folium_map=map_html._repr_html_())
+    else:
+        # Render an empty map
+        empty_map = folium.Map(location=[0, 0], zoom_start=2)  # This will create an empty map
+        return render_template('map_results.html', folium_map=empty_map._repr_html_())
+
+
+@app.route('/manage-layers')
+def manage_layers():
+    if 'userID' not in session:
+        flash("Please log in to manage layers.")
+        return redirect(url_for('index'))
+    pass
+
+@app.route('/add-feature', methods=['GET', 'POST'])
+def add_feature():
+    if 'userID' not in session:
+        flash("Please log in to add features.")
+        return redirect(url_for('index'))
+    pass
+
+
 @app.route('/register', methods=['POST'])
 def register():
-    """Handle user registration."""
     if request.method == 'POST':
         userID = request.form['userID']
         userName = request.form['userName']
@@ -102,7 +116,7 @@ def register():
     
     return redirect(url_for('index'))
 
-@app.route('/logout')
+@app.route('/logout', methods=['POST'])
 def logout():
     session.clear()
     flash('You have been logged out.')

@@ -186,54 +186,44 @@ def fetch_features_from_mongo(mongo_uri, database_name, collection_name):
 
     
 def create_layered_map(features):
-    """Create a layered map based on features."""
-    # Start with a fresh map instance
-    map_center = [0, 0]  # Default map center
-    m = folium.Map(location=map_center, zoom_start=2)
-    
-    # Create layers
-    parks_layer = folium.FeatureGroup(name='Parks')
-    rivers_layer = folium.FeatureGroup(name='Rivers')
-    buildings_layer = folium.FeatureGroup(name='Buildings')
+    m = folium.Map(location=[0, 0], zoom_start=2)
+
+    rivers = folium.FeatureGroup(name='Rivers')
+    parks = folium.FeatureGroup(name='Parks')
+    buildings = folium.FeatureGroup(name='Buildings')
 
     for feature in features:
-        geometry = feature.get('geometry', {})
-        name = feature.get('name', feature.get('subject', 'No Name'))
-        geo_type = geometry.get('type')
-        coords = geometry.get('coordinates', [])
+        name = feature.get('name', '').lower()
+        coordinates = feature['geometry']['coordinates']
 
-        if not coords:
-            continue
-
-        if geo_type == 'Point' and len(coords) == 2:
+        # Custom classification logic
+        if 'river' in name:
             folium.Marker(
-                location=[coords[1], coords[0]],
-                popup=name,
-                icon=folium.Icon(color='blue', icon='info-sign')
-            ).add_to(parks_layer)
-        elif geo_type == 'LineString' and coords:
-            folium.PolyLine(
-                locations=[[coord[1], coord[0]] for coord in coords],
-                color='blue'
-            ).add_to(rivers_layer)
-        elif geo_type in ['Polygon', 'MultiPolygon'] and coords:
-            folium.GeoJson(
-                geometry,
-                name="geojson",
-                tooltip=name,
-                style_function=lambda x: {'color': 'green'}
-            ).add_to(buildings_layer)
+                location=[coordinates[1], coordinates[0]],
+                popup=feature['name'],
+                icon=folium.Icon(color='blue')
+            ).add_to(rivers)
+        elif 'park' in name:
+            folium.Marker(
+                location=[coordinates[1], coordinates[0]],
+                popup=feature['name'],
+                icon=folium.Icon(color='green')
+            ).add_to(parks)
+        else:
+            folium.Marker(
+                location=[coordinates[1], coordinates[0]],
+                popup=feature['name'],
+                icon=folium.Icon(color='red')
+            ).add_to(buildings)
 
-    # Add layers to the map
-    parks_layer.add_to(m)
-    rivers_layer.add_to(m)
-    buildings_layer.add_to(m)
-
-    # Add layer control
+    m.add_child(rivers)
+    m.add_child(parks)
+    m.add_child(buildings)
+    
     folium.LayerControl().add_to(m)
-
-    # Return the map object for rendering
+    
     return m
+
 
 
 
